@@ -69,12 +69,13 @@ check_digits = {
 	10000 : 75678,
 	100000 : 24646,
 	1000000 : 58151,
-	10000000 : 55897,
+	# 10000000 : 55897,
 }
 
 if __name__ == "__main__":
 	digits 	= 100
 	pidig	= pi_chudnovsky_algo(digits)
+	print("Data type:", type(pidig), "Length :D ?", len(pidig))
 	print(pidig)
 
 	#raise SystemExit in case of ...
