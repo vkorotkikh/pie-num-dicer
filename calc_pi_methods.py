@@ -8,6 +8,7 @@
 
 import math
 from gmpy2 import mpz
+from gmpy2 import isqrt
 from time import time
 
 def main():
@@ -17,20 +18,20 @@ def main():
 def pi_chudnovsky_algo(digits):
 
 	c = 640320
-	# cto3_div24	= (c**3) // 24
+	cto3_div24	= (c**3) // 24
 	C3_OVER_24 = (c**3)// 24
-    def binarysplit(a, b):
-        """
-        Computes the terms for binary splitting the Chudnovsky infinite series
+	def binarysplit(a, b):
+		"""
+		Computes the terms for binary splitting the Chudnovsky infinite series
 
-        a(a) = +/- (13591409 + 545140134*a)
-        p(a) = (6*a-5)*(2*a-1)*(6*a-1)
-        b(a) = 1
-        q(a) = a*a*a*C3_OVER_24
+		a(a) = +/- (13591409 + 545140134*a)
+		p(a) = (6*a-5)*(2*a-1)*(6*a-1)
+		b(a) = 1
+		q(a) = a*a*a*C3_OVER_24
 
-        returns P(a,b), Q(a,b) and T(a,b)
-        """
-		if b - a == 0:
+		returns P(a,b), Q(a,b) and T(a,b)
+		"""
+		if b - a == 1:
 			if a == 0:
 				Pab = Qab = mpz(1)
 			else:
@@ -45,8 +46,8 @@ def pi_chudnovsky_algo(digits):
 			m = (a + b) // 2
 			# Recursively calculate P(a,m), Q(a,m) and T(a,m)
 			Pam, Qam, Tam = binarysplit(a,m)
-			Recursively calculate P(m,b), Q(m,b) and T(m,b)
-            Pmb, Qmb, Tmb = binarysplit(m, b)
+			# Recursively calculate P(m,b), Q(m,b) and T(m,b)
+			Pmb, Qmb, Tmb = binarysplit(m, b)
 			# combine everything
 			Pab = Pam * Pmb
 			Qab = Qam * Qmb
@@ -58,50 +59,34 @@ def pi_chudnovsky_algo(digits):
 	# Calculate P(0,N) and Q(0, N)
 	P, Q, T = binarysplit(0, N)
 	one_squared = mpz(10)**(2*digits)
-    sqrtC = (10005*one_squared).sqrt()
-    return (Q*426880*sqrtC) // T
+	sqrtC = isqrt(10005*one_squared)
+	return (Q*426880*sqrtC) // T
 
 # The last 5 digits or pi for various numbers of digits
 check_digits = {
-        100 : 70679,
-       1000 :  1989,
-      10000 : 75678,
-     100000 : 24646,
-    1000000 : 58151,
-   10000000 : 55897,
+	100 : 70679,
+	1000 :  1989,
+	10000 : 75678,
+	100000 : 24646,
+	1000000 : 58151,
+	10000000 : 55897,
 }
 
 if __name__ == "__main__":
 	digits 	= 100
-	pidig	= pi_chudnovsky_bs(digits)
+	pidig	= pi_chudnovsky_algo(digits)
 	print(pidig)
 
 	#raise SystemExit in case of ...
 	for log10_digits in range(1,9):
 		digits 	= 10**log10_digits
 		stime	= time()
-		pi = pi_chudnovsky_bs(digits)
+		pi = pi_chudnovsky_algo(digits)
 		print("Chudnovsky gmpy mpz algorithm")
 		print("Digits:", digits, "exec time:", time() - stime)
-
-if __name__ == "__main__":
-    digits = 100
-    pi = pi_chudnovsky_bs(digits)
-    print(pi)
-    #raise SystemExit
-    for log10_digits in range(1,9):
-        digits = 10**log10_digits
-        start =time()
-
-
-        # pi = pi_chudnovsky_bs(digits)
-        # print("chudnovsky_gmpy_mpz_bs: digits",digits,"time",time()-start)
-        # if digits in check_digits:
-        #     last_five_digits = pi % 100000
-        #     if check_digits[digits] == last_five_digits:
-        #         print("Last 5 digits %05d OK" % last_five_digits)
-        #     else:
-        #         print("Last 5 digits %05d wrong should be %05d" % (last_five_digits, check_digits[digits]))
-
-if __name__ == "__main__":
-	main()
+		if digits in check_digits:
+			last_five_digits = pi % 100000
+			if check_digits[digits] == last_five_digits:
+				print("Last five digits %05d OK" % last_five_digits)
+			else:
+				print("Last 5 digits %05d wrong should be %05d" % (last_five_digits, check_digits[digits]))
