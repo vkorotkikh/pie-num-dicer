@@ -72,4 +72,36 @@ check_digits = {
 }
 
 if __name__ == "__main__":
+	digits 	= 100
+	pidig	= pi_chudnovsky_bs(digits)
+	print(pidig)
+
+	#raise SystemExit in case of ...
+	for log10_digits in range(1,9):
+		digits 	= 10**log10_digits
+		stime	= time()
+		pi = pi_chudnovsky_bs(digits)
+		print("Chudnovsky gmpy mpz algorithm")
+		print("Digits:", digits, "exec time:", time() - stime)
+
+if __name__ == "__main__":
+    digits = 100
+    pi = pi_chudnovsky_bs(digits)
+    print(pi)
+    #raise SystemExit
+    for log10_digits in range(1,9):
+        digits = 10**log10_digits
+        start =time()
+
+
+        # pi = pi_chudnovsky_bs(digits)
+        # print("chudnovsky_gmpy_mpz_bs: digits",digits,"time",time()-start)
+        # if digits in check_digits:
+        #     last_five_digits = pi % 100000
+        #     if check_digits[digits] == last_five_digits:
+        #         print("Last 5 digits %05d OK" % last_five_digits)
+        #     else:
+        #         print("Last 5 digits %05d wrong should be %05d" % (last_five_digits, check_digits[digits]))
+
+if __name__ == "__main__":
 	main()
