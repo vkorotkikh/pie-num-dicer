@@ -14,9 +14,10 @@ from time import time
 def main():
 	print("test")
 
-
+#
 def pi_chudnovsky_algo(digits):
-
+	"""	Calculate Pi digits using Chudnovski series w/ binary splitting
+		returns digits via mpz	"""
 	c = 640320
 	cto3_div24	= (c**3) // 24
 	C3_OVER_24 = (c**3)// 24
@@ -60,6 +61,7 @@ def pi_chudnovsky_algo(digits):
 	P, Q, T = binarysplit(0, N)
 	one_squared = mpz(10)**(2*digits)
 	sqrtC = isqrt(10005*one_squared)
+	# returns an mpz class containing the pi digits...
 	return (Q*426880*sqrtC) // T
 
 # The last 5 digits or pi for various numbers of digits
