@@ -98,7 +98,12 @@ if __name__ == "__main__":
 		print("Do you wish to enter custom Pie digit number")
 		usrin = input("yes/no:  ")
 		if usrin.lower() == 'yes':
-			piedigs = int(input("Enter number of Pie digits to calculate: "))
+			usrdig = input("Enter number of Pie digits to calculate: ")
+			if usrdig.isdigit():
+				piedigs = int(usrdig)
+			else:
+				usrdig = input("Please reenter a positive integer: ")
+				piedigs = int(usrdig)
 		else:
 			piedigs = digits
 		# pidig	= pi_chudnovsky_algo(piedigs)
@@ -106,6 +111,7 @@ if __name__ == "__main__":
 		# print(pidig)
 
 	#raise SystemExit in case of ...
+		print("Length of Pi to calculate: ", piedigs)
 		for log10_digits in range(1,9):
 			digits 	= 10**log10_digits
 			stime	= time()
