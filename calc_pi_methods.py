@@ -6,6 +6,7 @@
 # ******************************************************************************
 # Begin Imports
 
+import sys
 import math
 from gmpy2 import mpz
 from gmpy2 import isqrt
@@ -76,7 +77,8 @@ check_digits = {
 
 if __name__ == "__main__":
 
-	digits = 100
+	digits 	= 100
+	piedigs = 0
 	try:
 		print("# ***********************************************************************")
 		print("# Name: Pie Number Calculator")
@@ -93,7 +95,12 @@ if __name__ == "__main__":
 		print("#	")
 		print("# ***********************************************************************")
 		print("")
-		piedigs = input("Enter number of Pie digits to calculate")
+		print("Do you wish to enter custom Pie digit number")
+		usrin = input("yes/no:  ")
+		if usrin.lower() == 'yes':
+			piedigs = int(input("Enter number of Pie digits to calculate: "))
+		else:
+			piedigs = digits
 		# pidig	= pi_chudnovsky_algo(piedigs)
 		# print("Data type:", type(pidig), "Length :D ?", len(pidig))
 		# print(pidig)
