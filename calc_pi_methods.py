@@ -75,10 +75,28 @@ check_digits = {
 }
 
 if __name__ == "__main__":
-	digits 	= 100
-	pidig	= pi_chudnovsky_algo(digits)
-	print("Data type:", type(pidig), "Length :D ?", len(pidig))
-	print(pidig)
+
+	digits = 100
+	try:
+		print("# ***********************************************************************")
+		print("# Name: Pie Number Calculator")
+		print("# Author: Not I (not yet)")
+		print("# Date:    Aug 2017	")
+		print("#	")
+		print("# ***********************************************************************")
+		pi_chudnovsky_algo(sys.argv[1])
+	except IndexError:
+		print("# ***********************************************************************")
+		print("# Name: Pie Number Calculator")
+		print("# Author: Not I (not yet)")
+		print("# Date:    Aug 2017	")
+		print("#	")
+		print("# ***********************************************************************")
+		print("")
+		piedigs = input("Enter number of Pie digits to calculate")
+		pidig	= pi_chudnovsky_algo(digits)
+		print("Data type:", type(pidig), "Length :D ?", len(pidig))
+		print(pidig)
 
 	#raise SystemExit in case of ...
 	for log10_digits in range(1,9):
