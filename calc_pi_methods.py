@@ -84,7 +84,7 @@ if __name__ == "__main__":
 		print("# Date:    Aug 2017	")
 		print("#	")
 		print("# ***********************************************************************")
-		pi_chudnovsky_algo(sys.argv[1])
+		pidig	= pi_chudnovsky_algo(sys.argv[1])
 	except IndexError:
 		print("# ***********************************************************************")
 		print("# Name: Pie Number Calculator")
@@ -94,20 +94,20 @@ if __name__ == "__main__":
 		print("# ***********************************************************************")
 		print("")
 		piedigs = input("Enter number of Pie digits to calculate")
-		pidig	= pi_chudnovsky_algo(digits)
-		print("Data type:", type(pidig), "Length :D ?", len(pidig))
-		print(pidig)
+		# pidig	= pi_chudnovsky_algo(piedigs)
+		# print("Data type:", type(pidig), "Length :D ?", len(pidig))
+		# print(pidig)
 
 	#raise SystemExit in case of ...
-	for log10_digits in range(1,9):
-		digits 	= 10**log10_digits
-		stime	= time()
-		pi = pi_chudnovsky_algo(digits)
-		print("Chudnovsky gmpy mpz algorithm")
-		print("Digits:", digits, "exec time:", time() - stime)
-		if digits in check_digits:
-			last_five_digits = pi % 100000
-			if check_digits[digits] == last_five_digits:
-				print("Last five digits %05d OK" % last_five_digits)
-			else:
-				print("Last 5 digits %05d wrong should be %05d" % (last_five_digits, check_digits[digits]))
+		for log10_digits in range(1,9):
+			digits 	= 10**log10_digits
+			stime	= time()
+			pi = pi_chudnovsky_algo(piedigs)
+			print("Chudnovsky gmpy mpz algorithm")
+			print("Digits:", digits, "exec time:", time() - stime)
+			if digits in check_digits:
+				last_five_digits = pi % 100000
+				if check_digits[digits] == last_five_digits:
+					print("Last five digits %05d OK" % last_five_digits)
+				else:
+					print("Last 5 digits %05d wrong should be %05d" % (last_five_digits, check_digits[digits]))
