@@ -75,13 +75,29 @@ check_digits = {
 	# 10000000 : 55897,
 }
 
+def calc_options():
+
+	piedigits = 0
+	print("# ***********************************************************************")
+	print("# Name: Pie Number Generator")
+	print("# Author:  Vadim  K. ")
+	print("# Date:    Aug 2017	")
+	print("#	")
+	print("# ***********************************************************************")
+	try:
+		piedigits = pi_chudnovsky_algo(sys.argv[1])
+	except IndexError:
+		sys.exit()
+
 if __name__ == "__main__":
 
 	digits 	= 100
 	piedigs = 0
+
+	print(len(sys.argv))
 	try:
 		print("# ***********************************************************************")
-		print("# Name: Pie Number Calculator")
+		print("# Name: Pie Number Generator")
 		print("# Author: Not I (not yet)")
 		print("# Date:    Aug 2017	")
 		print("#	")
@@ -89,7 +105,7 @@ if __name__ == "__main__":
 		pidig	= pi_chudnovsky_algo(sys.argv[1])
 	except IndexError:
 		print("# ***********************************************************************")
-		print("# Name: Pie Number Calculator")
+		print("# Name: Pie Number Generator")
 		print("# Author: Not I (not yet)")
 		print("# Date:    Aug 2017	")
 		print("#	")
